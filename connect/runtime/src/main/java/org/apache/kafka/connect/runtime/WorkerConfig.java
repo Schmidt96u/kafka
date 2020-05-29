@@ -190,8 +190,8 @@ public class WorkerConfig extends AbstractConfig {
 
     public static final String ACCESS_CONTROL_ALLOW_METHODS_CONFIG = "access.control.allow.methods";
     protected static final String ACCESS_CONTROL_ALLOW_METHODS_DOC =
-        "Sets the methods supported for cross origin requests by setting the Access-Control-Allow-Methods header. "
-        + "The default value of the Access-Control-Allow-Methods header allows cross origin requests for GET, POST and HEAD.";
+            "Sets the methods supported for cross origin requests by setting the Access-Control-Allow-Methods header. "
+                    + "The default value of the Access-Control-Allow-Methods header allows cross origin requests for GET, POST and HEAD.";
     protected static final String ACCESS_CONTROL_ALLOW_METHODS_DEFAULT = "";
 
     public static final String ADMIN_LISTENERS_CONFIG = "admin.listeners";
@@ -217,22 +217,22 @@ public class WorkerConfig extends AbstractConfig {
     public static final String CONFIG_PROVIDERS_CONFIG = "config.providers";
     protected static final String CONFIG_PROVIDERS_DOC =
             "Comma-separated names of <code>ConfigProvider</code> classes, loaded and used "
-            + "in the order specified. Implementing the interface  "
-            + "<code>ConfigProvider</code> allows you to replace variable references in connector configurations, "
-            + "such as for externalized secrets. ";
+                    + "in the order specified. Implementing the interface  "
+                    + "<code>ConfigProvider</code> allows you to replace variable references in connector configurations, "
+                    + "such as for externalized secrets. ";
 
     public static final String REST_EXTENSION_CLASSES_CONFIG = "rest.extension.classes";
     protected static final String REST_EXTENSION_CLASSES_DOC =
             "Comma-separated names of <code>ConnectRestExtension</code> classes, loaded and called "
-            + "in the order specified. Implementing the interface  "
-            + "<code>ConnectRestExtension</code> allows you to inject into Connect's REST API user defined resources like filters. "
-            + "Typically used to add custom capability like logging, security, etc. ";
+                    + "in the order specified. Implementing the interface  "
+                    + "<code>ConnectRestExtension</code> allows you to inject into Connect's REST API user defined resources like filters. "
+                    + "Typically used to add custom capability like logging, security, etc. ";
 
     public static final String CONNECTOR_CLIENT_POLICY_CLASS_CONFIG = "connector.client.config.override.policy";
     public static final String CONNECTOR_CLIENT_POLICY_CLASS_DOC =
-        "Class name or alias of implementation of <code>ConnectorClientConfigOverridePolicy</code>. Defines what client configurations can be "
-        + "overriden by the connector. The default implementation is `None`. The other possible policies in the framework include `All` "
-        + "and `Principal`. ";
+            "Class name or alias of implementation of <code>ConnectorClientConfigOverridePolicy</code>. Defines what client configurations can be "
+                    + "overriden by the connector. The default implementation is `None`. The other possible policies in the framework include `All` "
+                    + "and `Principal`. ";
     public static final String CONNECTOR_CLIENT_POLICY_CLASS_DEFAULT = "None";
 
 
@@ -279,8 +279,8 @@ public class WorkerConfig extends AbstractConfig {
                         Type.STRING,
                         ClientDnsLookup.DEFAULT.toString(),
                         in(ClientDnsLookup.DEFAULT.toString(),
-                           ClientDnsLookup.USE_ALL_DNS_IPS.toString(),
-                           ClientDnsLookup.RESOLVE_CANONICAL_BOOTSTRAP_SERVERS_ONLY.toString()),
+                                ClientDnsLookup.USE_ALL_DNS_IPS.toString(),
+                                ClientDnsLookup.RESOLVE_CANONICAL_BOOTSTRAP_SERVERS_ONLY.toString()),
                         Importance.MEDIUM,
                         CLIENT_DNS_LOOKUP_DOC)
                 .define(KEY_CONVERTER_CLASS_CONFIG, Type.CLASS,
@@ -355,8 +355,8 @@ public class WorkerConfig extends AbstractConfig {
 
     private void logInternalConverterDeprecationWarnings(Map<String, String> props) {
         String[] deprecatedConfigs = new String[] {
-            INTERNAL_KEY_CONVERTER_CLASS_CONFIG,
-            INTERNAL_VALUE_CONVERTER_CLASS_CONFIG
+                INTERNAL_KEY_CONVERTER_CLASS_CONFIG,
+                INTERNAL_VALUE_CONVERTER_CLASS_CONFIG
         };
         for (String config : deprecatedConfigs) {
             if (props.containsKey(config)) {
@@ -377,30 +377,30 @@ public class WorkerConfig extends AbstractConfig {
 
     private void logDeprecatedProperty(String propName, String propValue, String defaultValue, String prefix) {
         String prefixNotice = prefix != null
-            ? " (along with all configuration for '" + prefix + "')"
-            : "";
+                ? " (along with all configuration for '" + prefix + "')"
+                : "";
         if (defaultValue != null && defaultValue.equalsIgnoreCase(propValue)) {
             log.info(
-                "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release. "
-                    + "The specified value '{}' matches the default, so this property can be safely removed from the worker configuration.",
-                propName,
-                prefixNotice,
-                propValue
+                    "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release. "
+                            + "The specified value '{}' matches the default, so this property can be safely removed from the worker configuration.",
+                    propName,
+                    prefixNotice,
+                    propValue
             );
         } else if (defaultValue != null) {
             log.warn(
-                "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release. "
-                    + "The specified value '{}' does NOT match the default and recommended value '{}'.",
-                propName,
-                prefixNotice,
-                propValue,
-                defaultValue
+                    "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release. "
+                            + "The specified value '{}' does NOT match the default and recommended value '{}'.",
+                    propName,
+                    prefixNotice,
+                    propValue,
+                    defaultValue
             );
         } else {
             log.warn(
-                "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release.",
-                propName,
-                prefixNotice
+                    "Worker configuration property '{}'{} is deprecated and may be removed in an upcoming release.",
+                    propName,
+                    prefixNotice
             );
         }
     }
@@ -421,8 +421,8 @@ public class WorkerConfig extends AbstractConfig {
     public static List<String> pluginLocations(Map<String, String> props) {
         String locationList = props.get(WorkerConfig.PLUGIN_PATH_CONFIG);
         return locationList == null
-                         ? new ArrayList<String>()
-                         : Arrays.asList(COMMA_WITH_WHITESPACE.split(locationList.trim(), -1));
+                ? new ArrayList<String>()
+                : Arrays.asList(COMMA_WITH_WHITESPACE.split(locationList.trim(), -1));
     }
 
     public WorkerConfig(ConfigDef definition, Map<String, String> props) {
