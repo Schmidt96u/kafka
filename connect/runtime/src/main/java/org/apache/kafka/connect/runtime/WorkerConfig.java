@@ -138,11 +138,20 @@ public class WorkerConfig extends AbstractConfig {
     public static final long OFFSET_COMMIT_INTERVAL_MS_DEFAULT = 60000L;
 
     public static final String OFFSET_COMMIT_TIMEOUT_MS_CONFIG = "offset.flush.timeout.ms";
+
+
+    public static final String OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW = "offset.flush.interval.override.allow";
+
+
     private static final String OFFSET_COMMIT_TIMEOUT_MS_DOC
             = "Maximum number of milliseconds to wait for records to flush and partition offset data to be"
             + " committed to offset storage before cancelling the process and restoring the offset "
             + "data to be committed in a future attempt.";
     public static final long OFFSET_COMMIT_TIMEOUT_MS_DEFAULT = 5000L;
+
+    public static final Boolean  OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DEFAULT=false;
+    private  static  final  String OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DOC
+            =" THis config will give you the possibility to override offset.flush.interval.ms directly from the connector itself";
 
     /**
      * @deprecated As of 1.1.0.
@@ -298,6 +307,7 @@ public class WorkerConfig extends AbstractConfig {
                         Importance.LOW, OFFSET_COMMIT_INTERVAL_MS_DOC)
                 .define(OFFSET_COMMIT_TIMEOUT_MS_CONFIG, Type.LONG, OFFSET_COMMIT_TIMEOUT_MS_DEFAULT,
                         Importance.LOW, OFFSET_COMMIT_TIMEOUT_MS_DOC)
+                .define(OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW, Type.BOOLEAN, OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DEFAULT, Importance.LOW, OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DOC)
                 .define(REST_HOST_NAME_CONFIG, Type.STRING, null, Importance.LOW, REST_HOST_NAME_DOC)
                 .define(REST_PORT_CONFIG, Type.INT, REST_PORT_DEFAULT, Importance.LOW, REST_PORT_DOC)
                 .define(LISTENERS_CONFIG, Type.LIST, null, Importance.LOW, LISTENERS_DOC)
