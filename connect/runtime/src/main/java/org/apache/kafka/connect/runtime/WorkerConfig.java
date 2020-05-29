@@ -57,6 +57,12 @@ public class WorkerConfig extends AbstractConfig {
             Arrays.asList("set", "add", "setDate", "addDate")
     );
 
+    public static final String OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW = "offset.flush.interval.override.allow";
+    public static final Boolean  OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DEFAULT=false;
+    private  static  final  String OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DOC
+            =" THis config will give you the possibility to override offset.flush.interval.ms directly from the connector itself";
+
+
     public static final String BOOTSTRAP_SERVERS_CONFIG = "bootstrap.servers";
     public static final String BOOTSTRAP_SERVERS_DOC
             = "A list of host/port pairs to use for establishing the initial connection to the Kafka "
@@ -298,6 +304,8 @@ public class WorkerConfig extends AbstractConfig {
                         Importance.LOW, OFFSET_COMMIT_INTERVAL_MS_DOC)
                 .define(OFFSET_COMMIT_TIMEOUT_MS_CONFIG, Type.LONG, OFFSET_COMMIT_TIMEOUT_MS_DEFAULT,
                         Importance.LOW, OFFSET_COMMIT_TIMEOUT_MS_DOC)
+                .define(OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW, Type.BOOLEAN, OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DEFAULT,
+                        Importance.LOW, OFFSET_COMMIT_INTERVAL_OVERRIDE_ALLOW_DOC)
                 .define(REST_HOST_NAME_CONFIG, Type.STRING, null, Importance.LOW, REST_HOST_NAME_DOC)
                 .define(REST_PORT_CONFIG, Type.INT, REST_PORT_DEFAULT, Importance.LOW, REST_PORT_DOC)
                 .define(LISTENERS_CONFIG, Type.LIST, null, Importance.LOW, LISTENERS_DOC)
